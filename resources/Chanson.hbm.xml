@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="org.javacademie.music.domain">
+    <class name="Chanson" table="CHANSON">
+        
+        <id name="id" type="integer">
+            <generator class="native" />
+        </id>
+        
+         <property name="codeChanson" type="integer">
+            <column name="CODE_CHANSON" />
+        </property>
+        
+        <property name="titreChanson" type="string">
+            <column name="TITRE_CHANSON" length="80" not-null="true" />
+        </property>
+        
+       	<property  name="duree" type="integer">
+          <column name="DUREE" />
+        </property>
+        
+       <many-to-one name="album" class="Album" column="ALBUM_ID" lazy="false"  />
+        
+    </class>
+    <!--  
+      <query name="ChansonByCodeChansonAndCodeAlbum"><![CDATA[SELECT chan FROM Album as alb 
+                                                      			JOIN alb.chansons as chan
+                                                       WHERE alb.codeAlbum=:codeAlbum
+                                                       AND chan.codeChanson=:codeChanson]]></query>
+                                                       -->
+    
+</hibernate-mapping>

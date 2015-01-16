@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="org.javacademie.music.domain">
+    <class name="Album" table="ALBUM">
+        
+        <id name="codeAlbum" type="integer">
+        	<column name="CODE_ALBUM" />
+        </id>
+        <property  name="nomAlbum" type="string">
+            <column name="TITRE_ALBUM" length="80" not-null="true" />
+        </property>
+        
+        <set name="artistes" table="ARTISTE_ALBUM_JOINT" lazy="false">
+			<key column="ALBUM_ID" />
+			<many-to-many column="ARTISTE_ID" class="Artiste" />
+		</set>	
+		<!-- 
+		<set name="chansons" cascade="all,delete-orphan" lazy="false">
+			<key column="ALBUM_ID" not-null="false"/>
+			<one-to-many class="Chanson" />
+		</set>
+		  -->
+         	 
+         
+ 		
+        
+    </class>
+    
+</hibernate-mapping>
